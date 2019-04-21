@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import in.khatri.rahul.amiiboapp.R;
+import in.khatri.rahul.amiiboapp.retrofit.HomeRetrofitActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -16,7 +17,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+              //  startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                startActivity(new Intent(SplashActivity.this, HomeRetrofitActivity.class));
             }
         }, 1500);
     }
