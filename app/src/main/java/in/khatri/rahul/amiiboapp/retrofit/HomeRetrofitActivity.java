@@ -148,21 +148,21 @@ public class HomeRetrofitActivity extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 try {
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
-                                    gameModel = new GameModel();
-                                    gameModel.setAmiiboSeries(jsonObject1.getString("amiiboSeries"));
+                                    JSONObject jsonObjectRelease = jsonObject1.getJSONObject("release");
+                                    gameModel = new GameModel(jsonObject1.getString("amiiboSeries"), jsonObject1.getString("character"), jsonObject1.getString("gameSeries"), jsonObject1.getString("head"), jsonObject1.getString("image"), jsonObject1.getString("name"), jsonObject1.getString("tail"), jsonObject1.getString("type"),jsonObjectRelease.getString("au"), jsonObjectRelease.getString("eu"), jsonObjectRelease.getString("jp"), jsonObjectRelease.getString("na"));
+                                    /*gameModel.setAmiiboSeries(jsonObject1.getString("amiiboSeries"));
                                     gameModel.setCharacter(jsonObject1.getString("character"));
                                     gameModel.setGameSeries(jsonObject1.getString("gameSeries"));
                                     gameModel.setHead(jsonObject1.getString("head"));
                                     gameModel.setImage(jsonObject1.getString("image"));
                                     gameModel.setName(jsonObject1.getString("name"));
                                     gameModel.setTail(jsonObject1.getString("tail"));
-                                    gameModel.setType(jsonObject1.getString("type"));
-                                    JSONObject jsonObjectRelease = jsonObject1.getJSONObject("release");
-                                    gameModel.setAu(jsonObjectRelease.getString("au"));
+                                    gameModel.setType(jsonObject1.getString("type"));*/
+
+                                    /*gameModel.setAu(jsonObjectRelease.getString("au"));
                                     gameModel.setEu(jsonObjectRelease.getString("eu"));
                                     gameModel.setJp(jsonObjectRelease.getString("jp"));
-                                    gameModel.setNa(jsonObjectRelease.getString("na"));
+                                    gameModel.setNa(jsonObjectRelease.getString("na"));*/
                                     Log.e("Release au", jsonObjectRelease.getString("au"));
                                     //  Log.e("Relase", jsonObject1.getString("release"));
                                     arrayListGame.add(gameModel);
