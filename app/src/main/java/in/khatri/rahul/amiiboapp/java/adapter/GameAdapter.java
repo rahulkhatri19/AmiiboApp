@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.adapter;
+package in.khatri.rahul.amiiboapp.java.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -22,8 +22,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.activity.GameDetailActivity;
-import in.khatri.rahul.amiiboapp.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.activity.GameDetailActivity;
+import in.khatri.rahul.amiiboapp.java.model.GameModel;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     private ArrayList<GameModel> gameModelArrayList;

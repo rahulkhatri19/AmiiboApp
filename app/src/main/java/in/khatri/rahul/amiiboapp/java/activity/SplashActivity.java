@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.activity;
+package in.khatri.rahul.amiiboapp.java.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.retrofit.HomeRetrofitActivity;
+import in.khatri.rahul.amiiboapp.kotlin.HomeRetrofitActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

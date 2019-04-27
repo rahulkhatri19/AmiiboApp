@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.retrofit;
+package in.khatri.rahul.amiiboapp.java.retrofit;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,22 +16,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.adapter.GameAdapter;
-import in.khatri.rahul.amiiboapp.model.GameModel;
-import in.khatri.rahul.amiiboapp.retrofit.utils.ApiInterface;
-import in.khatri.rahul.amiiboapp.retrofit.utils.ClientApi;
-import in.khatri.rahul.amiiboapp.utils.dialog.SpotsDialog;
+import in.khatri.rahul.amiiboapp.java.adapter.GameRetrofitAdapter;
+import in.khatri.rahul.amiiboapp.java.model.GameDataList;
+import in.khatri.rahul.amiiboapp.java.model.GameRetrofitModel;
+import in.khatri.rahul.amiiboapp.java.retrofit.utils.ApiInterface;
+import in.khatri.rahul.amiiboapp.java.retrofit.utils.ClientApi;
+import in.khatri.rahul.amiiboapp.java.utils.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,12 +36,10 @@ public class HomeRetrofitActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayout llNoData;
     SpotsDialog progressDialog;
-    GameModel gameModel;
-    GameAdapter gameAdapter = null;
-    ArrayList<GameModel> arrayListGame = new ArrayList<>();
+    GameRetrofitAdapter gameRetrofitAdapter = null;
+    ArrayList<GameRetrofitModel> arrayListGame = new ArrayList<>();
     private ApiInterface apiInterface;
     boolean doubleBackToExitPressedOnce = false;
-    private final String BASE_URL = "https://www.amiiboapi.com/api/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,11 +59,9 @@ public class HomeRetrofitActivity extends AppCompatActivity {
         if (!isOnline()) {
             checkNetwork();
         }
-      //  Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build();
-      //  apiInterface = retrofit.create(ApiInterface.class);
-         apiInterface= ClientApi.getClient().create(ApiInterface.class);
+        apiInterface = ClientApi.getClient().create(ApiInterface.class);
         gameData();
-        gameAdapter= new GameAdapter(this,arrayListGame);
+        gameRetrofitAdapter = new GameRetrofitAdapter(this, arrayListGame);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,24 +70,24 @@ public class HomeRetrofitActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("et","log");
+                Log.e("et", "log");
                 if (!s.equals("")) {
-                    ArrayList<GameModel> searchList = new ArrayList();
+                    ArrayList<GameRetrofitModel> searchList = new ArrayList();
                     for (int i = 0; i < arrayListGame.size(); i++) {
                         if (arrayListGame.get(i).getName().toLowerCase().contains(s) || arrayListGame.get(i).getGameSeries().toLowerCase().contains(s)) {
                             searchList.add(arrayListGame.get(i));
                         }
                     }
                     try {
-                        gameAdapter.notifyDataSetChanged();
-                        recyclerView.setAdapter(new GameAdapter(HomeRetrofitActivity.this, searchList));
+                        gameRetrofitAdapter.notifyDataSetChanged();
+                        recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, searchList));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                 } else {
-                    gameAdapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(new GameAdapter(HomeRetrofitActivity.this, arrayListGame));
+                    gameRetrofitAdapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
                 }
             }
 
@@ -110,33 +100,32 @@ public class HomeRetrofitActivity extends AppCompatActivity {
 
     private void gameData() {
         arrayListGame.clear();
-        Call<JsonElement> call = apiInterface.getGameData();
-        call.enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.e("res body", response.body() + "");
-                String stResponse = String.valueOf(response.body());
-                Log.e("StRes", stResponse);
-              /*  gameAdapter= new GameRetrofitAdapter(HomeRetrofitActivity.this, response.body());
-                Type listType= new TypeToken<List<GameRetrofitModel>>() {}.getType();
 
-                 arrayListGame=new Gson().fromJson(stResponse,listType);
-                Log.e("arr ", arrayListGame+"" );
-                Log.e("arr size", arrayListGame.size()+"" );*/
-                getGameData(stResponse);
+        Call<GameDataList> gameCall = apiInterface.getGameData();
+        gameCall.enqueue(new Callback<GameDataList>() {
+            @Override
+            public void onResponse(Call<GameDataList> call, Response<GameDataList> response) {
+                arrayListGame = response.body().getDataList();
+                //   getGameData(stResponse);
+                //   ArrayList<GameRetrofitModel> list= response.body().getDataList();
+                //   Log.e("list", String.valueOf(list.size()));
+                llNoData.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
                 progressDialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-                Log.e("HomeRetofitAct", "FailureOccur:" + t);
+            public void onFailure(Call<GameDataList> call, Throwable t) {
+                Log.e("error", t.getMessage());
                 progressDialog.dismiss();
+
             }
         });
 
     }
 
-    private void getGameData(String response) {
+  /*  private void getGameData(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
             final JSONArray jsonArray = jsonObject.getJSONArray("amiibo");
@@ -149,7 +138,7 @@ public class HomeRetrofitActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
 
-                                    gameModel = new GameModel();
+                                *//*    gameModel = new GameModel();
                                     gameModel.setAmiiboSeries(jsonObject1.getString("amiiboSeries"));
                                     gameModel.setCharacter(jsonObject1.getString("character"));
                                     gameModel.setGameSeries(jsonObject1.getString("gameSeries"));
@@ -165,7 +154,7 @@ public class HomeRetrofitActivity extends AppCompatActivity {
                                     gameModel.setNa(jsonObjectRelease.getString("na"));
                                     Log.e("Release au", jsonObjectRelease.getString("au"));
                                     //  Log.e("Relase", jsonObject1.getString("release"));
-                                    arrayListGame.add(gameModel);
+                                    arrayListGame.add(gameModel);*//*
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -178,7 +167,7 @@ public class HomeRetrofitActivity extends AppCompatActivity {
                                 public void run() {
                                     llNoData.setVisibility(View.GONE);
                                     recyclerView.setVisibility(View.VISIBLE);
-                                    recyclerView.setAdapter(new GameAdapter(HomeRetrofitActivity.this, arrayListGame));
+                                    recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
                                 }
                             });
                         } else {
@@ -193,7 +182,7 @@ public class HomeRetrofitActivity extends AppCompatActivity {
             llNoData.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

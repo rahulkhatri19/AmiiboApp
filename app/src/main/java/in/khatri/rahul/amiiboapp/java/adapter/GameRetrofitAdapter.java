@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.adapter;
+package in.khatri.rahul.amiiboapp.java.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -18,18 +18,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import java.util.List;
+
+import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.activity.GameDetailActivity;
-import in.khatri.rahul.amiiboapp.model.GameDataList;
-import in.khatri.rahul.amiiboapp.model.GameRetrofitModel;
+import in.khatri.rahul.amiiboapp.java.activity.GameDetailActivity;
+import in.khatri.rahul.amiiboapp.java.model.GameRetrofitModel;
 
 public class GameRetrofitAdapter extends RecyclerView.Adapter<GameRetrofitAdapter.ViewHolder> {
-    private List<GameRetrofitModel> gameModelArrayList;
+    private ArrayList<GameRetrofitModel> gameModelArrayList;
     private Context mContext;
 
-    public GameRetrofitAdapter(Context context, List<GameRetrofitModel> arrayList) {
+    public GameRetrofitAdapter(Context context, ArrayList<GameRetrofitModel> arrayList) {
         this.mContext = context;
         this.gameModelArrayList = arrayList;
     }
@@ -40,9 +40,9 @@ public class GameRetrofitAdapter extends RecyclerView.Adapter<GameRetrofitAdapte
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.game_layout, null);
         WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         //  DisplayMetrics displayMetrics= new DisplayMetrics();
-        Point point= new Point();
+        Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
-        int width= point.x;
+        int width = point.x;
         view.setLayoutParams(new RecyclerView.LayoutParams(width, RecyclerView.LayoutParams.WRAP_CONTENT));
         return new ViewHolder(view);
     }
@@ -70,7 +70,7 @@ public class GameRetrofitAdapter extends RecyclerView.Adapter<GameRetrofitAdapte
                 bundle.putString("name", dataModel.getName());
                 bundle.putString("character", dataModel.getCharacter());
                 bundle.putString("gameSeries", dataModel.getGameSeries());
-               /* bundle.putString("au", dataModel.getAu());
+                /* bundle.putString("au", dataModel.getAu());
                 bundle.putString("eu", dataModel.getEu());
                 bundle.putString("jp", dataModel.getJp());
                 bundle.putString("na", dataModel.getNa());*/

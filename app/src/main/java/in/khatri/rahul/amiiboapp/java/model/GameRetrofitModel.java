@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.model;
+package in.khatri.rahul.amiiboapp.java.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -37,7 +37,7 @@ public class GameRetrofitModel {
     @Expose
     private String type;
 
-    /*@SerializedName("release")
+  /*  @SerializedName("release")
     @Expose
     private String release;
 
@@ -56,6 +56,17 @@ public class GameRetrofitModel {
     @SerializedName("jp")
     @Expose
     private String jp;*/
+
+    public GameRetrofitModel(String amiiboSeries, String character, String gameSeries, String head, String image, String name, String tail, String type) {
+        this.amiiboSeries = amiiboSeries;
+        this.character = character;
+        this.gameSeries = gameSeries;
+        this.head = head;
+        this.image = image;
+        this.name = name;
+        this.tail = tail;
+        this.type = type;
+    }
 
     public String getAmiiboSeries() {
         return amiiboSeries;
@@ -89,39 +100,4 @@ public class GameRetrofitModel {
         return type;
     }
 
-  /*  public String getRelease() {
-        return release;
-    }
-
-    public String getAu() {
-        return au;
-    }
-
-    public void setAu(String au) {
-        this.au = au;
-    }
-
-    public String getEu() {
-        return eu;
-    }
-
-    public void setEu(String eu) {
-        this.eu = eu;
-    }
-
-    public String getNa() {
-        return na;
-    }
-
-    public void setNa(String na) {
-        this.na = na;
-    }
-
-    public String getJp() {
-        return jp;
-    }
-
-    public void setJp(String jp) {
-        this.jp = jp;
-    }*/
 }

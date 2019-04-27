@@ -1,6 +1,4 @@
-package in.khatri.rahul.amiiboapp.retrofit.utils;
-
-import android.content.Context;
+package in.khatri.rahul.amiiboapp.java.retrofit.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

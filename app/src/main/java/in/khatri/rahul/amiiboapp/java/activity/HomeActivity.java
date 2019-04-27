@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.activity;
+package in.khatri.rahul.amiiboapp.java.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,10 +24,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.adapter.GameAdapter;
-import in.khatri.rahul.amiiboapp.model.GameModel;
-import in.khatri.rahul.amiiboapp.utils.WebServiceInterface;
-import in.khatri.rahul.amiiboapp.utils.WebserviceHandler;
+import in.khatri.rahul.amiiboapp.java.adapter.GameAdapter;
+import in.khatri.rahul.amiiboapp.java.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.utils.WebServiceInterface;
+import in.khatri.rahul.amiiboapp.java.utils.WebserviceHandler;
 
 public class HomeActivity extends AppCompatActivity {
     EditText etSearch;

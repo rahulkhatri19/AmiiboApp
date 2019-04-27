@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.utils.dialog;
+package in.khatri.rahul.amiiboapp.java.utils.dialog;
 
 import android.content.Context;
 import android.view.View;

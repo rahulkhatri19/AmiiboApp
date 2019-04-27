@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.utils;
+package in.khatri.rahul.amiiboapp.java.utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,7 +9,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.AnalyticsListener;
 import com.androidnetworking.interfaces.StringRequestListener;
 
-import in.khatri.rahul.amiiboapp.utils.dialog.SpotsDialog;
+import in.khatri.rahul.amiiboapp.java.utils.dialog.SpotsDialog;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;

@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.model;
+package in.khatri.rahul.amiiboapp.java.model;
 
 public class GameModel {
     String amiiboSeries, character, gameSeries, head, image, name, tail, type, release, au, eu, jp, na ;

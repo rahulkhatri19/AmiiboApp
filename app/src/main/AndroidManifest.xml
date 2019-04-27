@@ -12,19 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".java.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.HomeActivity"
-            android:windowSoftInputMode="stateHidden">
-           </activity>
+            android:name=".java.activity.HomeActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".activity.GameDetailActivity"
+            android:name=".java.activity.GameDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SplashActivity"
+        <activity
+            android:name=".java.activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBarStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".retrofit.HomeRetrofitActivity"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".java.retrofit.HomeRetrofitActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".kotlin.HomeRetrofitActivity"/>
     </application>
 
 </manifest>
