@@ -5,27 +5,30 @@ import com.google.gson.annotations.SerializedName
 class GameDetailModel {
 
     @SerializedName("amiiboSeries")
-    val amiiboSeries: String?= null
+    val amiiboSeries: String? = null
 
     @SerializedName("character")
-    val character: String?= null
+    val character: String? = null
 
     @SerializedName("gameSeries")
-    val gameSeries: String?= null
+    val gameSeries: String? = null
 
     @SerializedName("head")
-    val head: String?= null
+    val head: String? = null
 
     @SerializedName("image")
-    val image: String?= null
+    val image: String? = null
 
     @SerializedName("name")
-    val name: String?= null
+    val name: String? = null
 
     @SerializedName("tail")
-    val tail: String?= null
+    val tail: String? = null
 
     @SerializedName("type")
-    val type: String?= null
+    val type: String? = null
+
+    @SerializedName("release")
+    val release: Release? = null
 
 }
