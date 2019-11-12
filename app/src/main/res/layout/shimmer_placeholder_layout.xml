@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <View
+        android:id="@+id/view_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_title"
+        android:layout_width="160dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/view_des"
+        app:layout_constraintStart_toEndOf="@id/view_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_des"
+        android:layout_width="160dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/view_image"
+        app:layout_constraintTop_toBottomOf="@id/view_title" />
+
+</android.support.constraint.ConstraintLayout>
