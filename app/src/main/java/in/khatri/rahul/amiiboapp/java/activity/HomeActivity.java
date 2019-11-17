@@ -1,14 +1,9 @@
-package in.khatri.rahul.amiiboapp.activity;
+package in.khatri.rahul.amiiboapp.java.activity;
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,18 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,9 +24,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.model.GameModel;
-import in.khatri.rahul.amiiboapp.utils.WebServiceInterface;
-import in.khatri.rahul.amiiboapp.utils.WebserviceHandler;
+import in.khatri.rahul.amiiboapp.java.adapter.GameAdapter;
+import in.khatri.rahul.amiiboapp.java.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.utils.WebServiceInterface;
+import in.khatri.rahul.amiiboapp.java.utils.WebserviceHandler;
 
 public class HomeActivity extends AppCompatActivity {
     EditText etSearch;
@@ -102,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void gameData() {
+        arrayListGame.clear();
         WebserviceHandler webserviceHandler = new WebserviceHandler(this);
         webserviceHandler.serviceListener = new WebServiceInterface() {
             @Override
@@ -168,7 +157,7 @@ public class HomeActivity extends AppCompatActivity {
         webserviceHandler.getGameData();
     }
 
-    public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
+  /*  public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         private ArrayList<GameModel> gameModelArrayList;
         private Context mContext;
 
@@ -207,12 +196,12 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                 //    Toast.makeText(mContext, "It works", Toast.LENGTH_SHORT).show();
-                    /*
+                    *//*
                     *  Bundle bundle=null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             bundle= ActivityOptions.makeSceneTransitionAnimation(SharedElement.this,imageView,imageView.getTransitionName()).toBundle();
             startActivity(intent,bundle);
-        }*/
+        }*//*
                     Bundle bundle = new Bundle();
                     bundle.putString("amSeries", dataModel.getAmiiboSeries());
                     bundle.putString("name", dataModel.getName());
@@ -257,7 +246,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         }
-    }
+    }*/
 
     @Override
     protected void onResume() {

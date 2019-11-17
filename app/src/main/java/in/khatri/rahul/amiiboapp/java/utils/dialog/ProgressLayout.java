@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.utils.dialog;
+package in.khatri.rahul.amiiboapp.java.utils.dialog;
 
 import android.annotation.TargetApi;
 import android.content.Context;
