@@ -1,8 +1,7 @@
-package `in`.khatri.rahul.amiiboapp.kotlin
+package `in`.khatri.rahul.amiiboapp.kotlin.retrofit
 
 import `in`.khatri.rahul.amiiboapp.R
-import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.ClientInterface
-import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.GameRetrofitAdapter
+import `in`.khatri.rahul.amiiboapp.kotlin.GameRetrofitAdapter
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameDetailModel
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameModel
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +9,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.recycleView
 import kotlinx.android.synthetic.main.activity_home_retrofit.*
 import retrofit2.Call
@@ -40,7 +38,7 @@ class HomeRetrofitActivity : AppCompatActivity() {
                 val list: ArrayList<GameDetailModel> = response.body()?.gameList!!
 
                 recycleView.layoutManager= LinearLayoutManager(this@HomeRetrofitActivity)
-                recycleView.adapter= GameRetrofitAdapter( list,this@HomeRetrofitActivity)
+                recycleView.adapter= GameRetrofitAdapter(list, this@HomeRetrofitActivity)
                 shimmer_layout.stopShimmer()
                 shimmer_layout.visibility = View.GONE
                 recycleView.visibility = View.VISIBLE

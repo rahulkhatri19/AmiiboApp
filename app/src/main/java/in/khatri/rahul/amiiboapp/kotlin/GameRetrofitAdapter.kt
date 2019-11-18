@@ -1,16 +1,12 @@
-package `in`.khatri.rahul.amiiboapp.kotlin.retrofit
+package `in`.khatri.rahul.amiiboapp.kotlin
 
 import `in`.khatri.rahul.amiiboapp.R
 import `in`.khatri.rahul.amiiboapp.java.activity.GameDetailActivity
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameDetailModel
-import android.app.Activity
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

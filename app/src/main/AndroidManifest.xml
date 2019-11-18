@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".kotlin.fastNetworking.HomeFastNetworkingActivity"></activity>
         <activity android:name=".java.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -35,7 +36,7 @@
         <activity
             android:name=".java.retrofit.HomeRetrofitActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".kotlin.HomeRetrofitActivity"/>
+        <activity android:name=".kotlin.retrofit.HomeRetrofitActivity" />
     </application>
 
 </manifest>
