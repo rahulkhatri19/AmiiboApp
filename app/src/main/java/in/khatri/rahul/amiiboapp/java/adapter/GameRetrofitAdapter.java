@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class GameRetrofitAdapter extends RecyclerView.Adapter<GameRetrofitAdapte
 
         viewHolder.tvName.setText(dataModel.getName());
         viewHolder.tvGameSeries.setText(dataModel.getGameSeries());
-        Glide.with(mContext).load(dataModel.getImage()).placeholder(R.drawable.ic_placeholder).into(viewHolder.ivProfile);
+        Glide.with(mContext).load(dataModel.getImage()).placeholder(R.drawable.ic_placeholder).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.ivProfile);
         // Glide.with(mContext).load(dataModel.getImage()).into(viewHolder.ivProfile);
 
         viewHolder.llData.setOnClickListener(new View.OnClickListener() {

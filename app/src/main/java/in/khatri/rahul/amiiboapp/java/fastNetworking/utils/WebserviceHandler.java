@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.java.utils;
+package in.khatri.rahul.amiiboapp.java.fastNetworking.utils;
 
 import android.content.Context;
 import android.util.Log;

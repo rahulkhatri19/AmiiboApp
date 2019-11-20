@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".java.activity.HomeActivity"
+            android:name=".java.fastNetworking.HomeActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".java.activity.GameDetailActivity"
