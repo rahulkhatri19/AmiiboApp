@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
 import in.khatri.rahul.amiiboapp.java.activity.GameDetailActivity;
-import in.khatri.rahul.amiiboapp.java.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.fastNetworking.model.GameModel;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     private ArrayList<GameModel> gameModelArrayList;

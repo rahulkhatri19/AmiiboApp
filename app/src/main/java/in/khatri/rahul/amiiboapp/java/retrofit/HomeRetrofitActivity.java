@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
 import in.khatri.rahul.amiiboapp.java.adapter.GameAdapter;
-import in.khatri.rahul.amiiboapp.java.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.fastNetworking.model.GameModel;
 import in.khatri.rahul.amiiboapp.java.retrofit.utils.ApiInterface;
 import in.khatri.rahul.amiiboapp.java.retrofit.utils.ClientApi;
 import in.khatri.rahul.amiiboapp.java.utils.dialog.SpotsDialog;

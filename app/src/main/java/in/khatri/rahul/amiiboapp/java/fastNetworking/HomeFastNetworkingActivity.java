@@ -29,7 +29,7 @@ import in.khatri.rahul.amiiboapp.java.fastNetworking.model.GameModel;
 import in.khatri.rahul.amiiboapp.java.fastNetworking.utils.WebServiceInterface;
 import in.khatri.rahul.amiiboapp.java.fastNetworking.utils.WebserviceHandler;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeFastNetworkingActivity extends AppCompatActivity {
     EditText etSearch;
     RecyclerView recyclerView;
     LinearLayout llNoData;
@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             checkNetwork();
         }
         gameData();
-        gameAdapter = new GameAdapter(HomeActivity.this, arrayListGame);
+        gameAdapter = new GameAdapter(HomeFastNetworkingActivity.this, arrayListGame);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,14 +70,14 @@ public class HomeActivity extends AppCompatActivity {
                     }
                     try {
                         gameAdapter.notifyDataSetChanged();
-                        recyclerView.setAdapter(new GameAdapter(HomeActivity.this, searchList));
+                        recyclerView.setAdapter(new GameAdapter(HomeFastNetworkingActivity.this, searchList));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                 } else {
                     gameAdapter.notifyDataSetChanged();
-                    recyclerView.setAdapter(new GameAdapter(HomeActivity.this, arrayListGame));
+                    recyclerView.setAdapter(new GameAdapter(HomeFastNetworkingActivity.this, arrayListGame));
                 }
             }
 
@@ -138,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
                                         public void run() {
                                             llNoData.setVisibility(View.GONE);
                                             recyclerView.setVisibility(View.VISIBLE);
-                                            recyclerView.setAdapter(new GameAdapter(HomeActivity.this, arrayListGame));
+                                            recyclerView.setAdapter(new GameAdapter(HomeFastNetworkingActivity.this, arrayListGame));
                                         }
                                     });
                                 } else {
@@ -168,7 +168,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void checkNetwork() {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(HomeActivity.this).setMessage("Please Connect to Internet");
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(HomeFastNetworkingActivity.this).setMessage("Please Connect to Internet");
         builder1.setCancelable(false).setIcon(R.drawable.ic_internet).setTitle("No Internet Connection").setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

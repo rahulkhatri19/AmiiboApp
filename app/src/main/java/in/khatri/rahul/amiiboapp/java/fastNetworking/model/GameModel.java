@@ -1,7 +1,7 @@
-package in.khatri.rahul.amiiboapp.java.model;
+package in.khatri.rahul.amiiboapp.java.fastNetworking.model;
 
 public class GameModel {
-    String amiiboSeries, character, gameSeries, head, image, name, tail, type, release, au, eu, jp, na;
+   private String amiiboSeries, character, gameSeries, head, image, name, tail, type, release, au, eu, jp, na;
 
     public GameModel(String amiiboSeries, String character, String gameSeries, String head, String image, String name, String tail, String type, String au, String eu, String jp, String na) {
         this.amiiboSeries = amiiboSeries;
