@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,7 +23,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.java.adapter.GameAdapter;
+import in.khatri.rahul.amiiboapp.java.fastNetworking.adapter.GameAdapter;
 import in.khatri.rahul.amiiboapp.java.fastNetworking.model.GameModel;
 import in.khatri.rahul.amiiboapp.java.fastNetworking.utils.WebServiceInterface;
 import in.khatri.rahul.amiiboapp.java.fastNetworking.utils.WebserviceHandler;
@@ -95,7 +94,7 @@ public class HomeFastNetworkingActivity extends AppCompatActivity {
         webserviceHandler.serviceListener = new WebServiceInterface() {
             @Override
             public void onResponse(final String response) {
-                Log.e("Game Res", response);
+//                Log.e("Game Res", response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     final JSONArray jsonArray = jsonObject.getJSONArray("amiibo");
@@ -123,7 +122,7 @@ public class HomeFastNetworkingActivity extends AppCompatActivity {
                                             gameModel.setEu(jsonObjectRelease.getString("eu"));
                                             gameModel.setJp(jsonObjectRelease.getString("jp"));
                                             gameModel.setNa(jsonObjectRelease.getString("na"));*/
-                                            Log.e("Release au", jsonObjectRelease.getString("au"));
+//                                            Log.e("Release au", jsonObjectRelease.getString("au"));
                                             //  Log.e("Relase", jsonObject1.getString("release"));
                                             arrayListGame.add(gameModel);
 

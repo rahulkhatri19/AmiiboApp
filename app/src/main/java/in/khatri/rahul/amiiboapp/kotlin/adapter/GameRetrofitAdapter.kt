@@ -1,4 +1,4 @@
-package `in`.khatri.rahul.amiiboapp.kotlin
+package `in`.khatri.rahul.amiiboapp.kotlin.adapter
 
 import `in`.khatri.rahul.amiiboapp.R
 import `in`.khatri.rahul.amiiboapp.java.activity.GameDetailActivity
