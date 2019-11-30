@@ -20,9 +20,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
-import in.khatri.rahul.amiiboapp.java.adapter.GameRetrofitAdapter;
-import in.khatri.rahul.amiiboapp.java.model.GameDataList;
-import in.khatri.rahul.amiiboapp.java.model.GameRetrofitModel;
+import in.khatri.rahul.amiiboapp.java.retrofit.adapter.GameRetrofitAdapter;
+import in.khatri.rahul.amiiboapp.java.retrofit.model.GameDataList;
+import in.khatri.rahul.amiiboapp.java.retrofit.model.GameRetrofitModel;
 import in.khatri.rahul.amiiboapp.java.retrofit.utils.ApiInterface;
 import in.khatri.rahul.amiiboapp.java.retrofit.utils.ClientApi;
 import in.khatri.rahul.amiiboapp.java.utils.dialog.SpotsDialog;
@@ -36,11 +36,10 @@ public class HomeRetrofitActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayout llNoData;
     SpotsDialog progressDialog;
-    GameRetrofitAdapter gameRetrofitAdapter = null;
+    GameRetrofitAdapter gameAdapter = null;
     ArrayList<GameRetrofitModel> arrayListGame = new ArrayList<>();
     private ApiInterface apiInterface;
     boolean doubleBackToExitPressedOnce = false;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +58,9 @@ public class HomeRetrofitActivity extends AppCompatActivity {
         if (!isOnline()) {
             checkNetwork();
         }
-        apiInterface = ClientApi.getClient().create(ApiInterface.class);
+        apiInterface= ClientApi.getClient().create(ApiInterface.class);
         gameData();
-        gameRetrofitAdapter = new GameRetrofitAdapter(this, arrayListGame);
+        gameAdapter= new GameRetrofitAdapter(this, arrayListGame);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,7 +69,7 @@ public class HomeRetrofitActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("et", "log");
+                Log.e("et","log");
                 if (!s.equals("")) {
                     ArrayList<GameRetrofitModel> searchList = new ArrayList();
                     for (int i = 0; i < arrayListGame.size(); i++) {
@@ -79,15 +78,16 @@ public class HomeRetrofitActivity extends AppCompatActivity {
                         }
                     }
                     try {
-                        gameRetrofitAdapter.notifyDataSetChanged();
+                        gameAdapter.notifyDataSetChanged();
                         recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, searchList));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                 } else {
-                    gameRetrofitAdapter.notifyDataSetChanged();
+                    gameAdapter.notifyDataSetChanged();
                     recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
+
                 }
             }
 
@@ -100,89 +100,30 @@ public class HomeRetrofitActivity extends AppCompatActivity {
 
     private void gameData() {
         arrayListGame.clear();
-
-        Call<GameDataList> gameCall = apiInterface.getGameData();
-        gameCall.enqueue(new Callback<GameDataList>() {
+        Call<GameDataList> call = apiInterface.getGameData();
+        call.enqueue(new Callback<GameDataList>() {
             @Override
             public void onResponse(Call<GameDataList> call, Response<GameDataList> response) {
+                Log.e("res body", response.body() + "");
                 arrayListGame = response.body().getDataList();
-                //   getGameData(stResponse);
-                //   ArrayList<GameRetrofitModel> list= response.body().getDataList();
-                //   Log.e("list", String.valueOf(list.size()));
-                llNoData.setVisibility(View.GONE);
+//                String model = "ammio chrac "+arrayList.toString()+" series ";// +gameRetrofitModel.getGameSeries();//+" au "+response.body().getRelease().getAu();
+//                Log.e("response retrofit", model);
+                gameAdapter = new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame);
+                recyclerView.setAdapter(gameAdapter);
                 recyclerView.setVisibility(View.VISIBLE);
-                recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
+                llNoData.setVisibility(View.GONE);
                 progressDialog.dismiss();
             }
 
             @Override
             public void onFailure(Call<GameDataList> call, Throwable t) {
-                Log.e("error", t.getMessage());
+                Log.e("HomeRetofitAct", "FailureOccur:" + t);
+                llNoData.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
                 progressDialog.dismiss();
-
             }
         });
-
     }
-
-  /*  private void getGameData(String response) {
-        try {
-            JSONObject jsonObject = new JSONObject(response);
-            final JSONArray jsonArray = jsonObject.getJSONArray("amiibo");
-            if (this != null) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (jsonArray.length() > 0) {
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                try {
-                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-
-                                *//*    gameModel = new GameModel();
-                                    gameModel.setAmiiboSeries(jsonObject1.getString("amiiboSeries"));
-                                    gameModel.setCharacter(jsonObject1.getString("character"));
-                                    gameModel.setGameSeries(jsonObject1.getString("gameSeries"));
-                                    gameModel.setHead(jsonObject1.getString("head"));
-                                    gameModel.setImage(jsonObject1.getString("image"));
-                                    gameModel.setName(jsonObject1.getString("name"));
-                                    gameModel.setTail(jsonObject1.getString("tail"));
-                                    gameModel.setType(jsonObject1.getString("type"));
-                                    JSONObject jsonObjectRelease = jsonObject1.getJSONObject("release");
-                                    gameModel.setAu(jsonObjectRelease.getString("au"));
-                                    gameModel.setEu(jsonObjectRelease.getString("eu"));
-                                    gameModel.setJp(jsonObjectRelease.getString("jp"));
-                                    gameModel.setNa(jsonObjectRelease.getString("na"));
-                                    Log.e("Release au", jsonObjectRelease.getString("au"));
-                                    //  Log.e("Relase", jsonObject1.getString("release"));
-                                    arrayListGame.add(gameModel);*//*
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    llNoData.setVisibility(View.GONE);
-                                    recyclerView.setVisibility(View.VISIBLE);
-                                    recyclerView.setAdapter(new GameRetrofitAdapter(HomeRetrofitActivity.this, arrayListGame));
-                                }
-                            });
-                        } else {
-                            llNoData.setVisibility(View.VISIBLE);
-                            recyclerView.setVisibility(View.GONE);
-                        }
-                    }
-                });
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            llNoData.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(View.GONE);
-        }
-    }*/
 
     @Override
     public void onBackPressed() {

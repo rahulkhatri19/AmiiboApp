@@ -1,4 +1,4 @@
-package in.khatri.rahul.amiiboapp.java.adapter;
+package in.khatri.rahul.amiiboapp.java.retrofit.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -18,18 +18,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
 import in.khatri.rahul.amiiboapp.R;
 import in.khatri.rahul.amiiboapp.java.activity.GameDetailActivity;
-import in.khatri.rahul.amiiboapp.java.model.GameModel;
+import in.khatri.rahul.amiiboapp.java.retrofit.model.GameRetrofitModel;
+import in.khatri.rahul.amiiboapp.java.retrofit.model.*;
 
-public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
-    private ArrayList<GameModel> gameModelArrayList;
+public class GameRetrofitAdapter extends RecyclerView.Adapter<GameRetrofitAdapter.ViewHolder> {
+    private ArrayList<GameRetrofitModel> gameModelArrayList;
     private Context mContext;
 
-    public GameAdapter(Context context, ArrayList<GameModel> arrayList) {
+    public GameRetrofitAdapter(Context context, ArrayList<GameRetrofitModel> arrayList) {
         this.mContext = context;
         this.gameModelArrayList = arrayList;
     }
@@ -39,10 +41,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.game_layout, null);
         WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-      //  DisplayMetrics displayMetrics= new DisplayMetrics();
-        Point point= new Point();
+        //  DisplayMetrics displayMetrics= new DisplayMetrics();
+        Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
-        int width= point.x;
+        int width = point.x;
         view.setLayoutParams(new RecyclerView.LayoutParams(width, RecyclerView.LayoutParams.WRAP_CONTENT));
         return new ViewHolder(view);
     }
@@ -50,7 +52,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
-        final GameModel dataModel = gameModelArrayList.get(i);
+        final GameRetrofitModel dataModel = gameModelArrayList.get(i);
+        final Release release = dataModel.getRelease();
         viewHolder.setIsRecyclable(false);
 
         viewHolder.tvName.setTag(i);
@@ -59,21 +62,22 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder>{
 
         viewHolder.tvName.setText(dataModel.getName());
         viewHolder.tvGameSeries.setText(dataModel.getGameSeries());
-        Glide.with(mContext).load(dataModel.getImage()).placeholder(R.drawable.ic_placeholder).into(viewHolder.ivProfile);
-       // Glide.with(mContext).load(dataModel.getImage()).into(viewHolder.ivProfile);
+        Glide.with(mContext).load(dataModel.getImage()).placeholder(R.drawable.ic_placeholder).diskCacheStrategy(DiskCacheStrategy.ALL).into(viewHolder.ivProfile);
+        // Glide.with(mContext).load(dataModel.getImage()).into(viewHolder.ivProfile);
 
         viewHolder.llData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Bundle bundle = new Bundle();
                 bundle.putString("amSeries", dataModel.getAmiiboSeries());
                 bundle.putString("name", dataModel.getName());
                 bundle.putString("character", dataModel.getCharacter());
                 bundle.putString("gameSeries", dataModel.getGameSeries());
-                bundle.putString("au", dataModel.getAu());
-                bundle.putString("eu", dataModel.getEu());
-                bundle.putString("jp", dataModel.getJp());
-                bundle.putString("na", dataModel.getNa());
+                bundle.putString("au", release.getAu());
+                bundle.putString("eu", release.getEu());
+                bundle.putString("jp", release.getJp());
+                bundle.putString("na", release.getNa());
                 bundle.putString("head", dataModel.getHead());
                 bundle.putString("tail", dataModel.getTail());
                 bundle.putString("type", dataModel.getType());

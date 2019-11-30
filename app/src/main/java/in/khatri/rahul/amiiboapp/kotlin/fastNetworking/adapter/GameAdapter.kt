@@ -1,8 +1,8 @@
-package `in`.khatri.rahul.amiiboapp.kotlin
+package `in`.khatri.rahul.amiiboapp.kotlin.fastNetworking.adapter
 
 import `in`.khatri.rahul.amiiboapp.R
-import `in`.khatri.rahul.amiiboapp.java.activity.GameDetailActivity
-import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameDetailModel
+import `in`.khatri.rahul.amiiboapp.kotlin.GameDetailActivity
+import `in`.khatri.rahul.amiiboapp.kotlin.fastNetworking.model.GameModel
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,14 +14,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.game_layout.view.*
 
-class GameRetrofitAdapter(val item: ArrayList<GameDetailModel>, val context: Context) : RecyclerView.Adapter<GameRetrofitAdapter.ViewHolder>() {
+class GameAdapter(val item: ArrayList<GameModel>, val context: Context) : RecyclerView.Adapter<GameAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return item.size
     }
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        val list: GameDetailModel = item.get(p1)
+        val list: GameModel = item.get(p1)
         p0.tvName?.text = list.name
         p0.tvGameSeries?.text = list.gameSeries
         Glide.with(context).load(list.image).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).placeholder(R.drawable.ic_placeholder).into(p0.profile)
@@ -36,10 +36,10 @@ class GameRetrofitAdapter(val item: ArrayList<GameDetailModel>, val context: Con
             bundle.putString("tail", list.tail)
             bundle.putString("type", list.type)
             bundle.putString("profile", list.image)
-            bundle.putString("au", list.release?.au)
-            bundle.putString("eu", list.release?.eu)
-            bundle.putString("jp", list.release?.jp)
-            bundle.putString("na", list.release?.na)
+            bundle.putString("au", list.au)
+            bundle.putString("eu", list.eu)
+            bundle.putString("jp", list.jp)
+            bundle.putString("na", list.na)
             context.startActivity(Intent(context, GameDetailActivity::class.java).putExtras(bundle))
 
         }
@@ -54,6 +54,6 @@ class GameRetrofitAdapter(val item: ArrayList<GameDetailModel>, val context: Con
         val tvName = view.tv_name
         val tvGameSeries = view.tv_game_series
         val profile = view.iv_profile
-        val llData= view.ll_data
+        val llData = view.ll_data
     }
 }

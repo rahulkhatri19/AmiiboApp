@@ -1,8 +1,10 @@
-package in.khatri.rahul.amiiboapp.java.model;
+package in.khatri.rahul.amiiboapp.java.retrofit.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+
+import in.khatri.rahul.amiiboapp.java.retrofit.model.GameRetrofitModel;
 
 public class GameDataList {
     @SerializedName("amiibo")

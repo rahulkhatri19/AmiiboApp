@@ -1,4 +1,4 @@
-package `in`.khatri.rahul.amiiboapp.kotlin.retrofit
+package `in`.khatri.rahul.amiiboapp.kotlin.retrofit.utils
 
 
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameModel
@@ -13,7 +13,7 @@ abstract fun getGameData() : Call<GameModel>
 
     companion object {
         val Base_Url= "https://www.amiiboapi.com/api/"
-        fun create(): ClientInterface{
+        fun create(): ClientInterface {
             val retrofit= Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(Base_Url).build()
             return retrofit.create(ClientInterface::class.java)
         }
