@@ -1,7 +1,7 @@
 package `in`.khatri.rahul.amiiboapp.kotlin.retrofit
 
 import `in`.khatri.rahul.amiiboapp.R
-import `in`.khatri.rahul.amiiboapp.kotlin.adapter.GameRetrofitAdapter
+import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.adapter.GameRetrofitAdapter
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameDetailModel
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameModel
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.utils.ClientInterface

@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".kotlin.fastNetworking.HomeFastNetworkingActivity"/>
+        <activity
+            android:name=".kotlin.fastNetworking.HomeFastNetworkingActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".java.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -24,6 +26,8 @@
         <activity
             android:name=".java.activity.GameDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".kotlin.GameDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".java.activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBarStyle">
@@ -36,7 +40,9 @@
         <activity
             android:name=".java.retrofit.HomeRetrofitActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".kotlin.retrofit.HomeRetrofitActivity" />
+        <activity
+            android:name=".kotlin.retrofit.HomeRetrofitActivity"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

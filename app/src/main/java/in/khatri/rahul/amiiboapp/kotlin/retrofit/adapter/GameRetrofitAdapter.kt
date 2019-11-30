@@ -1,7 +1,7 @@
-package `in`.khatri.rahul.amiiboapp.kotlin.adapter
+package `in`.khatri.rahul.amiiboapp.kotlin.retrofit.adapter
 
 import `in`.khatri.rahul.amiiboapp.R
-import `in`.khatri.rahul.amiiboapp.java.activity.GameDetailActivity
+import `in`.khatri.rahul.amiiboapp.kotlin.GameDetailActivity
 import `in`.khatri.rahul.amiiboapp.kotlin.retrofit.model.GameDetailModel
 import android.content.Context
 import android.content.Intent

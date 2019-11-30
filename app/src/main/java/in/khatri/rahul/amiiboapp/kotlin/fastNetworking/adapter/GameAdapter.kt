@@ -1,8 +1,8 @@
-package `in`.khatri.rahul.amiiboapp.kotlin.adapter
+package `in`.khatri.rahul.amiiboapp.kotlin.fastNetworking.adapter
 
 import `in`.khatri.rahul.amiiboapp.R
-import `in`.khatri.rahul.amiiboapp.java.activity.GameDetailActivity
-import `in`.khatri.rahul.amiiboapp.kotlin.fastNetworking.GameModel
+import `in`.khatri.rahul.amiiboapp.kotlin.GameDetailActivity
+import `in`.khatri.rahul.amiiboapp.kotlin.fastNetworking.model.GameModel
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
