@@ -16,6 +16,34 @@ This is an app to demonstrate data fetching from api with help of different netw
 
 ### Screenshot :
 
+<table>
+  <tr>
+    <td>
+      <img src="Screenshot/Splash%20Screen.png" width=300 />
+    </td>
+    <td>
+      <img src="Screenshot/Home%20Screen.png" width=300 />
+    </td>
+    <td>
+      <img src="Screenshot/Game%20Detail%20Screen.png" width=300 />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>
+      <img src="Screenshot/Internet_alert_dialog.png" width=300 />
+    </td>
+    <td>
+      <img src="Screenshot/Shimmer_facebook_layout.png" width=300 />
+    </td>
+    <td>
+      <img src="Screenshot/Progress_dialog_spot.png" width=300 />
+    </td>
+  </tr>
+</table>
+
 ### Project Description
 
  - Packages : 
